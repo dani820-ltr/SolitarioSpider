@@ -13,7 +13,7 @@ public class Start {
 
 	public static void barajaAleatoria(ArrayList<Carta> cartaAleatoria) {
 		for (int i = 0; i < cartaAleatoria.size(); i++) {
-			System.out.println(cartaAleatoria.get(i).toString()+(i));
+			System.out.println(cartaAleatoria.get(i).toString() + (i));
 		}
 	}
 
@@ -26,53 +26,50 @@ public class Start {
 
 			for (int i = 0; i < 8; i++) {
 
-				cartas.add(new Carta(numero,Palos.Diamante, false));
+				cartas.add(new Carta(numero, Palos.Diamante, false));
 			}
 		}
 
-		ArrayList<Carta> cartaAleatoria = new ArrayList<Carta>();
-
-		int contador = 0;
-		while (!cartas.isEmpty()) {
-			int numeroRamdom = (int) Math.floor(Math.random() * cartas.size());
-			cartaAleatoria.add(cartas.get(numeroRamdom));
-			cartas.remove(numeroRamdom);
-
-			contador++;
-
-		}
+		Collections.shuffle(cartas);
 
 		System.out.println("Barajando");
 
-		barajaAleatoria(cartaAleatoria);
+		System.out.println("--------------------------");
+		Mazo mazos1 = new Mazo(cartas);
 
-		System.out.println(contador);
-		
-		
-		
-		Mazo mazos1 = new Mazo(cartaAleatoria);
-		
+		barajaAleatoria(cartas);
 
-		
-		
-		for (int i = 0; i <50; i++) {
-		//	System.out.println(cartaAleatoria.get(i).getNumero());
-			mazos1.ayadeCartaDerecha(new Carta(cartaAleatoria.get(i).getNumero(),Palos.Diamante,false));
-			cartaAleatoria.remove(i);
+		int i = 0;
+		System.out.println(cartas.size());
+
+		while (i != 50) {
+
+			// System.out.println(cartaAleatoria.get(i).getNumero());
+
+			mazos1.ayadeCartaDerecha(new Carta(cartas.get(i).getNumero(), Palos.Diamante, false));
+			cartas.remove(i);
+			i++;
+
 		}
-		System.out.println(cartaAleatoria.get(1).getNumero());
-		System.out.println( mazos1.getMazoDerecha().size());
+		System.out.println(mazos1.getMazoDerecha().size());
 		System.out.println(mazos1.getMazoDerecha().get(1).getNumero());
-		System.out.println(cartaAleatoria.size());
+
+		int j = 0;
+		while (j != 0) {
+
+			if (j <= 6) {
+				mazos1.ayadeCarta1(new Carta(cartas.get(j).getNumero(), Palos.Diamante, false));
+				j++;
+			}
+
+		}
 		
 		
-		
-		
+		System.out.println("");
 		
 		
 		
 		
 		
 	}
-
 }
